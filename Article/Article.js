@@ -112,7 +112,7 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
 
-function articleMaker(article) {
+function articleMaker(title, date, p1, p2, p3) {
   const article = document.createElement("div");
   const title = document.createElement("h2");
   const date = document.createElement("p");
@@ -121,11 +121,11 @@ function articleMaker(article) {
   const p3 = document.createElement("p");
   const expand = document.createElement("span");
 
-  title = article.title;
-  date = article.date;
-  p1 = article.firstParagraph;
-  p2 = article.secondParagraph;
-  p3 = article.thirdParagraph;
+  title.textContent = article.title;
+  date.textContent = article.date;
+  p1.textContent = article.firstParagraph;
+  p2.textContent = article.secondParagraph;
+  p3.textContent = article.thirdParagraph;
 
   article.appendChild(title);
   article.appendChild(date);
@@ -137,12 +137,12 @@ function articleMaker(article) {
   expand.addEventListener("click", (e) => {
     expand.classList.toggle("article-open");
   });
-
+  console.log(article);
   return article;
 }
 
 const articles = document.querySelector(".articles");
 
 data.forEach((obj) => {
-  articles.appendChild(articleMaker(article));
+  articles.appendChild(articleMaker(title, date, p1, p2, p3));
 });
