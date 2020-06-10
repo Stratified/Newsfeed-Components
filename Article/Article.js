@@ -86,6 +86,15 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
   },
+  {
+    title: "Why My Parents Don't Love Me",
+    date: "June 9th, 2020",
+    firstParagraph: `Well, it all started back in '98 when I was born...`,
+
+    secondParagraph: `...In West Philidelphia born and raised. On the playground is where I spent most of my days...`,
+
+    thirdParagraph: `...And that, kids, is how I met your mother.`,
+  },
 ];
 
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
@@ -112,37 +121,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
 
-function articleMaker(title, date, p1, p2, p3) {
+function articleMaker(t, d, p1, p2, p3) {
   const article = document.createElement("div");
   const title = document.createElement("h2");
   const date = document.createElement("p");
-  const p1 = document.createElement("p");
-  const p2 = document.createElement("p");
-  const p3 = document.createElement("p");
+  const para1 = document.createElement("p");
+  const para2 = document.createElement("p");
+  const para3 = document.createElement("p");
   const expand = document.createElement("span");
 
-  title.textContent = article.title;
-  date.textContent = article.date;
-  p1.textContent = article.firstParagraph;
-  p2.textContent = article.secondParagraph;
-  p3.textContent = article.thirdParagraph;
+  title.textContent = t;
+  date.textContent = d;
+  para1.textContent = p1;
+  para2.textContent = p2;
+  para3.textContent = p3;
+  expand.textContent = "▼";
 
   article.appendChild(title);
   article.appendChild(date);
-  article.appendChild(p1);
-  article.appendChild(p2);
-  article.appendChild(p3);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
   article.appendChild(expand);
 
+  article.classList.add("article");
+  date.classList.add("date");
+  expand.classList.add("expandButton");
+
   expand.addEventListener("click", (e) => {
-    expand.classList.toggle("article-open");
+    article.classList.toggle("article-open");
+    e.target.textContent = "▲";
   });
-  console.log(article);
   return article;
 }
 
 const articles = document.querySelector(".articles");
 
 data.forEach((obj) => {
-  articles.appendChild(articleMaker(title, date, p1, p2, p3));
+  articles.appendChild(
+    articleMaker(
+      obj.title,
+      obj.date,
+      obj.firstParagraph,
+      obj.secondParagraph,
+      obj.thirdParagraph
+    )
+  );
 });
